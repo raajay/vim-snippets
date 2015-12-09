@@ -6,7 +6,7 @@ priority -50
 
 #! header
 snippet #! "Shebang header for python scripts" b
-#!/usr/bin/env python
+#!`which python`
 # -*- coding: utf-8 -*-
 $0
 endsnippet
@@ -15,8 +15,16 @@ snippet dmain "ifmain" b
 def main():
 	return
 
+
+def cmdline():
+	import argparse
+	parser = argparse.ArgumentParser()
+	return parser.parse_args()
+
+
 if __name__ == `!p snip.rv = get_quoting_style(snip)`__main__`!p snip.rv = get_quoting_style(snip)`:
-	${1:${VISUAL:main()}}
+	args = cmdline()
+	${1:${VISUAL:main(args)}}
 endsnippet
 
 snippet ifmain "ifmain" b
